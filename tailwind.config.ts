@@ -22,9 +22,7 @@ const config: Config = {
 				sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
 			},
 			colors: {
-				primary: colors.pink,
-				gray: colors.gray,
-				greenTheme: "#7FDBC"
+
 			},
 			typography: ({ theme }: any) => ({
 				DEFAULT: {
@@ -59,6 +57,7 @@ const config: Config = {
 						},
 						'h1,h2,h3,h4,h5,h6': {
 							color: theme('colors.gray.100'),
+							font: 'Haffer, sans-serif',
 						},
 					},
 				},
