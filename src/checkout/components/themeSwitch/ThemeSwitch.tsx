@@ -15,11 +15,11 @@ const ThemeSwitch = () => {
         return null
     }
 
-    const onThemeSwitch = (currentTheme: any) => {
-        const daIframe: any = document.getElementById('da-iframe')
-        const iFrameWindow = daIframe?.contentWindow
-        iFrameWindow.postMessage({ message: 'getAppData', value: currentTheme }, '*')
-    }
+    // const onThemeSwitch = (currentTheme: any) => {
+    //     const daIframe: any = document.getElementById('da-iframe')
+    //     const iFrameWindow = daIframe?.contentWindow
+    //     iFrameWindow.postMessage({ message: 'getAppData', value: currentTheme }, '*')
+    // }
     return (
         <button
             aria-label="Toggle Dark Mode"
