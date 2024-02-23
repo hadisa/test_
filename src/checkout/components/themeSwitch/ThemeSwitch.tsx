@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useTheme } from 'next-themes'
@@ -15,19 +14,23 @@ const ThemeSwitch = () => {
         return null
     }
 
-    // const onThemeSwitch = (currentTheme: any) => {
-    //     const daIframe: any = document.getElementById('da-iframe')
-    //     const iFrameWindow = daIframe?.contentWindow
-    //     iFrameWindow.postMessage({ message: 'getAppData', value: currentTheme }, '*')
-    // }
+    const onThemeSwitch = (currentTheme: string) => {
+        // If you need to access an iframe, consider using TypeScript's `HTMLIFrameElement` type instead of `any`
+        const daIframe: HTMLIFrameElement | null = document.getElementById('da-iframe');
+        const iFrameWindow = daIframe?.contentWindow;
+        if (iFrameWindow) {
+            iFrameWindow.postMessage({ message: 'getAppData', value: currentTheme }, '*');
+        }
+    };
+
     return (
         <button
             aria-label="Toggle Dark Mode"
             onClick={() => {
-                const currentTheme = theme === 'dark' || resolvedTheme === 'dark' ? 'light' : 'dark'
-                setTheme(currentTheme)
-                console.log("Current Theme is::", currentTheme)
-                // onThemeSwitch(currentTheme)
+                const currentTheme = theme === 'dark' || resolvedTheme === 'dark' ? 'light' : 'dark';
+                setTheme(currentTheme);
+                console.log("Current Theme is::", currentTheme);
+                onThemeSwitch(currentTheme);
             }}
         >
             <svg
@@ -50,4 +53,4 @@ const ThemeSwitch = () => {
     )
 }
 
-export default ThemeSwitch
+export default ThemeSwitch;

@@ -1,6 +1,7 @@
-'use client'
+"use client"
 import { ThemeProvider } from 'next-themes'
-import React, { ReactNode } from 'react'
+import type { ReactNode } from 'react' // Import ReactNode as type
+import React from 'react'
 
 export function Wrapper(props: { children: ReactNode }) {
     const { children } = props;

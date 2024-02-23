@@ -17,8 +17,8 @@ export default async function Page({ params }: { params: { channel: string } }) 
 	if (!checkout || checkout.lines.length < 1) {
 		return (
 			<section className="mx-auto max-w-7xl p-8">
-				<h1 className="mt-8 text-3xl font-bold text-neutral-900">Your Shopping Cart is empty</h1>
-				<p className="my-12 text-sm text-neutral-500">
+				<h1 className="mt-8 text-3xl font-bold text-gray-900 dark:text-gray-100">Your Shopping Cart is empty</h1>
+				<p className="my-12 text-sm text-neutral-500  dark:text-gray-400">
 					Looks like you haven’t added any items to the cart yet.
 				</p>
 				<LinkWithChannel
@@ -33,7 +33,7 @@ export default async function Page({ params }: { params: { channel: string } }) 
 
 	return (
 		<section className="mx-auto max-w-7xl p-8">
-			<h1 className="mt-8 text-3xl font-bold text-neutral-900">Your Shopping Cart</h1>
+			<h1 className="mt-8 text-3xl font-bold text-gray-900 dark:text-gray-100">Your Shopping Cart</h1>
 			<form className="mt-12">
 				<ul
 					data-testid="CartProductList"

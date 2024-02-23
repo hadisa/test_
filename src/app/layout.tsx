@@ -1,10 +1,9 @@
-import { DraftModeNotification } from "@/ui/components/DraftModeNotification";
 import { type Metadata } from "next";
 import { Inter } from "next/font/google";
 import { type ReactNode } from "react";
-import "./globals.css";
+import { DraftModeNotification } from "@/ui/components/DraftModeNotification"; // Moved this import after React import
 import { Wrapper } from "@/app/wrapper";
-
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
