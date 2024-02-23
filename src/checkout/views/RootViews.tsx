@@ -1,8 +1,8 @@
-import { Suspense } from "react";
-import { Checkout, CheckoutSkeleton } from "@/checkout/views/Checkout";
-import { OrderConfirmation, OrderConfirmationSkeleton } from "@/checkout/views/OrderConfirmation";
 import { getQueryParams } from "@/checkout/lib/utils/url";
 import { PaymentProcessingScreen } from "@/checkout/sections/PaymentSection/PaymentProcessingScreen";
+import { Checkout, CheckoutSkeleton } from "@/checkout/views/Checkout";
+import { OrderConfirmation, OrderConfirmationSkeleton } from "@/checkout/views/OrderConfirmation";
+import { Suspense } from "react";
 
 export const RootViews = () => {
 	const orderId = getQueryParams().orderId;
