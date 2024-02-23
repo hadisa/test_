@@ -1,10 +1,8 @@
-
-
 'use client'
 import { ThemeProvider } from 'next-themes'
 import React, { ReactNode } from 'react'
 
-const Wrapper = (props: { children: ReactNode }) => {
+export function Wrapper(props: { children: ReactNode }) {
     const { children } = props;
     return (
         <ThemeProvider attribute="class" defaultTheme={"light"} enableSystem>
@@ -12,5 +10,3 @@ const Wrapper = (props: { children: ReactNode }) => {
         </ThemeProvider>
     )
 }
-
-export default Wrapper
