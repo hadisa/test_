@@ -21,9 +21,9 @@ const config: Config = {
 			fontFamily: {
 				sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
 			},
-			colors: {
+			// colors: {
 
-			},
+			// },
 			typography: ({ theme }: any) => ({
 				DEFAULT: {
 					css: {

@@ -5,6 +5,7 @@ import { type ReactNode } from "react";
 import "./globals.css";
 import Wrapper from "./wrapper";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
