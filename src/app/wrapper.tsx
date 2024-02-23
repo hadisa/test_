@@ -1,6 +1,6 @@
 "use client"
-import { ThemeProvider } from 'next-themes';
-import React, { ReactNode } from 'react'
+import { ThemeProvider } from 'next-themes'
+import React, { ReactNode } from 'react';
 
 export function Wrapper(props: { children: ReactNode }) {
     const { children } = props;

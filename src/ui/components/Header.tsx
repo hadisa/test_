@@ -1,4 +1,4 @@
-import ThemeSwitch from "@/checkout/components/themeSwitch/ThemeSwitch";
+import { ThemeSwitch } from "@/checkout/components/themeSwitch/ThemeSwitch";
 import { Logo } from "./Logo";
 import { Nav } from "./nav/Nav";
 
