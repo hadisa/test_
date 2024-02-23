@@ -3,7 +3,7 @@ import { type Metadata } from "next";
 import { Inter } from "next/font/google";
 import { type ReactNode } from "react";
 import "./globals.css";
-import Wrapper from "./wrapper";
+import Wrapper from "@/ui/components/wrapper";
 
 
 const inter = Inter({ subsets: ["latin"] });
