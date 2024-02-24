@@ -1,6 +1,6 @@
-import { ThemeSwitch } from "@/checkout/components/themeSwitch/ThemeSwitch";
 import { Logo } from "./Logo";
 import { Nav } from "./nav/Nav";
+import { ThemeSwitch } from "@/checkout/components/themeSwitch/ThemeSwitch";
 
 export function Header({ channel }: { channel: string }) {
 	return (
