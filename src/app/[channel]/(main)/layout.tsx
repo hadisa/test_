@@ -1,13 +1,12 @@
+import React from 'react';
 import { Footer } from "@/ui/components/Footer";
 import { Header } from "@/ui/components/Header";
-import { ReactNode } from "react"; // Import ReactNode from 'react' before other imports
-
 export const metadata = {
 	title: "Saleor Storefront example",
 	description: "Starter pack for building performant e-commerce experiences with Saleor.",
 };
 
-export default function RootLayout(props: { children: ReactNode; params: { channel: string } }) {
+export default function RootLayout(props: { children: React.ReactNode; params: { channel: string } }) {
 	return (
 		<>
 			<Header channel={props.params.channel} />
