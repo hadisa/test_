@@ -29,7 +29,7 @@ export function ProductElement({
 						<div>
 							<h3 className="mt-1 text-sm font-semibold text-gray-900 dark:text-gray-100">{product.name}</h3>
 							<p className="mt-1 text-sm text-gray-500 dark:text-gray-400" data-testid="ProductElement_Category">
-								{product.category?.name}
+								{product.category?.name} kk
 							</p>
 						</div>
 						<p className="mt-1 text-sm font-medium text-gray-900 dark:text-gray-100" data-testid="ProductElement_PriceRange">

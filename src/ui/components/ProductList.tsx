@@ -1,21 +1,7 @@
-import { ProductElement } from "./ProductElement";
 import { type ProductListItemFragment } from "@/gql/graphql";
+import { redirect } from "next/navigation";
 
-export const ProductList = ({ products }: { products: readonly ProductListItemFragment[] }) => {
-	return (
-		<ul
-			role="list"
-			data-testid="ProductList"
-			className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
-		>
-			{products.map((product, index) => (
-				<ProductElement
-					key={product.id}
-					product={product}
-					priority={index < 2}
-					loading={index < 3 ? "eager" : "lazy"}
-				/>
-			))}
-		</ul>
-	);
-};
+export default function ProductList({ products }: { products: readonly ProductListItemFragment[] }) {
+	redirect(`/default-channel/products/${products[0].slug}`);
+
+}

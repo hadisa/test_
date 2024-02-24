@@ -2,7 +2,7 @@ import { notFound, redirect } from "next/navigation";
 import { OrderDirection, ProductOrderField, SearchProductsDocument } from "@/gql/graphql";
 import { executeGraphQL } from "@/lib/graphql";
 import { Pagination } from "@/ui/components/Pagination";
-import { ProductList } from "@/ui/components/ProductList";
+import { ProductList } from "@/ui/components/ProductList1";
 import { ProductsPerPage } from "@/app/config";
 
 export const metadata = {
