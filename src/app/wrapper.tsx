@@ -1,9 +1,9 @@
 "use client"
 import { ThemeProvider } from 'next-themes'
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 interface WrapperProps {
-    children: ReactNode;
+    children: React.ReactNode;
 }
 
 export function Wrapper({ children }: WrapperProps) {
