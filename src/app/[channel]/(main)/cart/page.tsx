@@ -62,19 +62,19 @@ export default async function Page({ params }: { params: { channel: string } }) 
 												variantId: item.variant.id,
 											})}
 										>
-											<h2 className="font-medium text-neutral-700">{item.variant?.product?.name}</h2>
+											<h2 className="font-medium text-gray-500 dark:text-gray-200">{item.variant?.product?.name}</h2>
 										</LinkWithChannel>
-										<p className="mt-1 text-sm text-neutral-500">{item.variant?.product?.category?.name}</p>
+										<p className="mt-1 text-sm text-gray-500 dark:text-gray-300">{item.variant?.product?.category?.name}</p>
 										{item.variant.name !== item.variant.id && Boolean(item.variant.name) && (
-											<p className="mt-1 text-sm text-neutral-500">Variant: {item.variant.name}</p>
+											<p className="mt-1 text-sm text-gray-500 dark:text-gray-300">Variant: {item.variant.name}</p>
 										)}
 									</div>
-									<p className="text-right font-semibold text-neutral-900">
+									<p className="text-right font-semibold text-gray-900 dark:text-gray-100">
 										{formatMoney(item.totalPrice.gross.amount, item.totalPrice.gross.currency)}
 									</p>
 								</div>
 								<div className="flex justify-between">
-									<div className="text-sm font-bold">Qty: {item.quantity}</div>
+									<div className="text-sm font-bold text-gray-900 dark:text-gray-100">Qty: {item.quantity}</div>
 									<DeleteLineButton checkoutId={checkoutId} lineId={item.id} />
 								</div>
 							</div>
