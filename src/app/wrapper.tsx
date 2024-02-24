@@ -6,8 +6,7 @@ interface WrapperProps {
     children: ReactNode;
 }
 
-export function Wrapper(props: WrapperProps) {
-    const { children } = props;
+export function Wrapper({ children }: WrapperProps) {
     return (
         <ThemeProvider attribute="class" defaultTheme={"light"} enableSystem>
             {children}
