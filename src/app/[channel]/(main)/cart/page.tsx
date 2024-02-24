@@ -1,9 +1,10 @@
-import * as Checkout from "@/lib/checkout";
-import { formatMoney, getHrefForVariant } from "@/lib/utils";
-import { LinkWithChannel } from "@/ui/atoms/LinkWithChannel";
 import Image from "next/image";
 import { CheckoutLink } from "./CheckoutLink";
 import { DeleteLineButton } from "./DeleteLineButton";
+import * as Checkout from "@/lib/checkout";
+import { formatMoney, getHrefForVariant } from "@/lib/utils";
+import { LinkWithChannel } from "@/ui/atoms/LinkWithChannel";
+
 
 export const metadata = {
 	title: "Shopping Cart · Saleor Storefront example",

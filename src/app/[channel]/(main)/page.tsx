@@ -1,10 +1,3 @@
-import { ProductDetailsDocument, ProductListByCollectionDocument } from "@/gql/graphql";
-import * as Checkout from "@/lib/checkout";
-import { executeGraphQL } from "@/lib/graphql";
-import { formatMoney, formatMoneyRange } from "@/lib/utils";
-import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
-import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
-import { VariantSelector } from "@/ui/components/VariantSelector";
 import edjsHTML from "editorjs-html";
 import { revalidatePath } from "next/cache";
 import { notFound } from "next/navigation";
@@ -12,8 +5,13 @@ import { type Product, type WithContext } from "schema-dts";
 import { invariant } from "ts-invariant";
 import xss from "xss";
 import { AddButton } from "./products/[slug]/AddButton";
-
-
+import { ProductDetailsDocument, ProductListByCollectionDocument } from "@/gql/graphql";
+import * as Checkout from "@/lib/checkout";
+import { executeGraphQL } from "@/lib/graphql";
+import { formatMoney, formatMoneyRange } from "@/lib/utils";
+import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
+import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
+import { VariantSelector } from "@/ui/components/VariantSelector";
 
 const parser = edjsHTML();
 
