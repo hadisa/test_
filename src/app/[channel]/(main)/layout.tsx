@@ -1,6 +1,6 @@
 import { Footer } from "@/ui/components/Footer";
 import { Header } from "@/ui/components/Header";
-import { type ReactNode } from "react";
+import { ReactNode } from "react"; // Import ReactNode from 'react' before other imports
 
 export const metadata = {
 	title: "Saleor Storefront example",

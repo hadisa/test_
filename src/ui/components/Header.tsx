@@ -1,5 +1,5 @@
+import { Nav } from "./nav/Nav"; // Import "./nav/Nav" before other imports
 import { ThemeSwitch } from "@/checkout/components/themeSwitch/ThemeSwitch";
-import { Nav } from "./nav/Nav";
 
 export function Header({ channel }: { channel: string }) {
 	return (
