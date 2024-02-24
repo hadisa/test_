@@ -1,9 +1,9 @@
-import Image from "next/image";
-import { CheckoutLink } from "./CheckoutLink";
-import { DeleteLineButton } from "./DeleteLineButton";
 import * as Checkout from "@/lib/checkout";
 import { formatMoney, getHrefForVariant } from "@/lib/utils";
 import { LinkWithChannel } from "@/ui/atoms/LinkWithChannel";
+import Image from "next/image";
+import { CheckoutLink } from "./CheckoutLink";
+import { DeleteLineButton } from "./DeleteLineButton";
 
 export const metadata = {
 	title: "Shopping Cart · Saleor Storefront example",
@@ -23,7 +23,7 @@ export default async function Page({ params }: { params: { channel: string } }) 
 				</p>
 				<LinkWithChannel
 					href="/products"
-					className="inline-block max-w-full rounded border border-transparent bg-neutral-900 px-6 py-3 text-center font-medium text-neutral-50 hover:bg-neutral-800 aria-disabled:cursor-not-allowed aria-disabled:bg-neutral-500 sm:px-16"
+					className="inline-block max-w-full rounded border border-transparent dark:border-gray-600 bg-neutral-900 px-6 py-3 text-center font-medium text-neutral-50 hover:bg-neutral-800 aria-disabled:cursor-not-allowed aria-disabled:bg-neutral-500 sm:px-16"
 				>
 					Explore products
 				</LinkWithChannel>
@@ -38,11 +38,11 @@ export default async function Page({ params }: { params: { channel: string } }) 
 				<ul
 					data-testid="CartProductList"
 					role="list"
-					className="divide-y divide-neutral-200 border-b border-t border-neutral-200"
+					className="divide-y divide-neutral-200 border-b border-t border-neutral-200 dark:border-gray-600"
 				>
 					{checkout.lines.map((item) => (
 						<li key={item.id} className="flex py-4">
-							<div className="aspect-square h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border bg-neutral-50 sm:h-32 sm:w-32">
+							<div className="aspect-square h-24 w-24 flex-shrink-0 overflow-hidden rounded-md bg-neutral-50 sm:h-32 sm:w-32">
 								{item.variant?.product?.thumbnail?.url && (
 									<Image
 										src={item.variant.product.thumbnail.url}
