@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Footer } from "@/ui/components/Footer";
 import { Header } from "@/ui/components/Header";
 export const metadata = {
@@ -9,7 +9,8 @@ export const metadata = {
 export default function RootLayout(props: { children: React.ReactNode; params: { channel: string } }) {
 	return (
 		<>
-			<Header channel={props.params.channel} />
+			{/* <Header channel={props.params.channel} /> */}
+			<Header />
 			{/* <div className="w-full flex justify-end p-5"><ThemeSwitch /></div> */}
 			<div className="flex min-h-[calc(100dvh-64px)] flex-col">
 				<main className="flex-1">{props.children}</main>

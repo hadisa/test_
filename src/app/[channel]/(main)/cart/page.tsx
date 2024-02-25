@@ -5,7 +5,6 @@ import * as Checkout from "@/lib/checkout";
 import { formatMoney, getHrefForVariant } from "@/lib/utils";
 import { LinkWithChannel } from "@/ui/atoms/LinkWithChannel";
 
-
 export const metadata = {
 	title: "Shopping Cart · Saleor Storefront example",
 };
@@ -18,13 +17,15 @@ export default async function Page({ params }: { params: { channel: string } }) 
 	if (!checkout || checkout.lines.length < 1) {
 		return (
 			<section className="mx-auto max-w-7xl p-8">
-				<h1 className="mt-8 text-3xl font-bold text-gray-900 dark:text-gray-100">Your Shopping Cart is empty</h1>
+				<h1 className="mt-8 text-3xl font-bold text-gray-900 dark:text-gray-100">
+					Your Shopping Cart is empty
+				</h1>
 				<p className="my-12 text-sm text-neutral-500  dark:text-gray-400">
 					Looks like you haven’t added any items to the cart yet.
 				</p>
 				<LinkWithChannel
-					href="/products"
-					className="inline-block max-w-full rounded border border-transparent dark:border-gray-600 bg-neutral-900 px-6 py-3 text-center font-medium text-neutral-50 hover:bg-neutral-800 aria-disabled:cursor-not-allowed aria-disabled:bg-neutral-500 sm:px-16"
+					href="/"
+					className="inline-block max-w-full rounded border border-transparent bg-neutral-900 px-6 py-3 text-center font-medium text-neutral-50 hover:bg-neutral-800 aria-disabled:cursor-not-allowed aria-disabled:bg-neutral-500 sm:px-16 dark:border-gray-600"
 				>
 					Explore products
 				</LinkWithChannel>
@@ -63,11 +64,17 @@ export default async function Page({ params }: { params: { channel: string } }) 
 												variantId: item.variant.id,
 											})}
 										>
-											<h2 className="font-medium text-gray-500 dark:text-gray-200">{item.variant?.product?.name}</h2>
+											<h2 className="font-medium text-gray-500 dark:text-gray-200">
+												{item.variant?.product?.name}
+											</h2>
 										</LinkWithChannel>
-										<p className="mt-1 text-sm text-gray-500 dark:text-gray-300">{item.variant?.product?.category?.name}</p>
+										<p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
+											{item.variant?.product?.category?.name}
+										</p>
 										{item.variant.name !== item.variant.id && Boolean(item.variant.name) && (
-											<p className="mt-1 text-sm text-gray-500 dark:text-gray-300">Variant: {item.variant.name}</p>
+											<p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
+												Variant: {item.variant.name}
+											</p>
 										)}
 									</div>
 									<p className="text-right font-semibold text-gray-900 dark:text-gray-100">
@@ -75,7 +82,9 @@ export default async function Page({ params }: { params: { channel: string } }) 
 									</p>
 								</div>
 								<div className="flex justify-between">
-									<div className="text-sm font-bold text-gray-900 dark:text-gray-100">Qty: {item.quantity}</div>
+									<div className="text-sm font-bold text-gray-900 dark:text-gray-100">
+										Qty: {item.quantity}
+									</div>
 									<DeleteLineButton checkoutId={checkoutId} lineId={item.id} />
 								</div>
 							</div>
