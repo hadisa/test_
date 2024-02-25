@@ -13,6 +13,7 @@ import { formatMoney, formatMoneyRange } from "@/lib/utils";
 import { CheckoutAddLineDocument, ProductDetailsDocument, ProductListDocument } from "@/gql/graphql";
 import * as Checkout from "@/lib/checkout";
 import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
+import { Nav } from "@/ui/components/nav/Nav";
 
 export async function generateMetadata(
 	{
@@ -50,13 +51,13 @@ export async function generateMetadata(
 		},
 		openGraph: product.thumbnail
 			? {
-				images: [
-					{
-						url: product.thumbnail.url,
-						alt: product.name,
-					},
-				],
-			}
+					images: [
+						{
+							url: product.thumbnail.url,
+							alt: product.name,
+						},
+					],
+				}
 			: null,
 	};
 }
@@ -133,9 +134,9 @@ export default async function Page({
 		? formatMoney(selectedVariant.pricing.price.gross.amount, selectedVariant.pricing.price.gross.currency)
 		: isAvailable
 			? formatMoneyRange({
-				start: product?.pricing?.priceRange?.start?.gross,
-				stop: product?.pricing?.priceRange?.stop?.gross,
-			})
+					start: product?.pricing?.priceRange?.start?.gross,
+					stop: product?.pricing?.priceRange?.stop?.gross,
+				})
 			: "";
 
 	const productJsonLd: WithContext<Product> = {
@@ -144,31 +145,31 @@ export default async function Page({
 		image: product.thumbnail?.url,
 		...(selectedVariant
 			? {
-				name: `${product.name} - ${selectedVariant.name}`,
-				description: product.seoDescription || `${product.name} - ${selectedVariant.name}`,
-				offers: {
-					"@type": "Offer",
-					availability: selectedVariant.quantityAvailable
-						? "https://schema.org/InStock"
-						: "https://schema.org/OutOfStock",
-					priceCurrency: selectedVariant.pricing?.price?.gross.currency,
-					price: selectedVariant.pricing?.price?.gross.amount,
-				},
-			}
+					name: `${product.name} - ${selectedVariant.name}`,
+					description: product.seoDescription || `${product.name} - ${selectedVariant.name}`,
+					offers: {
+						"@type": "Offer",
+						availability: selectedVariant.quantityAvailable
+							? "https://schema.org/InStock"
+							: "https://schema.org/OutOfStock",
+						priceCurrency: selectedVariant.pricing?.price?.gross.currency,
+						price: selectedVariant.pricing?.price?.gross.amount,
+					},
+				}
 			: {
-				name: product.name,
+					name: product.name,
 
-				description: product.seoDescription || product.name,
-				offers: {
-					"@type": "AggregateOffer",
-					availability: product.variants?.some((variant) => variant.quantityAvailable)
-						? "https://schema.org/InStock"
-						: "https://schema.org/OutOfStock",
-					priceCurrency: product.pricing?.priceRange?.start?.gross.currency,
-					lowPrice: product.pricing?.priceRange?.start?.gross.amount,
-					highPrice: product.pricing?.priceRange?.stop?.gross.amount,
-				},
-			}),
+					description: product.seoDescription || product.name,
+					offers: {
+						"@type": "AggregateOffer",
+						availability: product.variants?.some((variant) => variant.quantityAvailable)
+							? "https://schema.org/InStock"
+							: "https://schema.org/OutOfStock",
+						priceCurrency: product.pricing?.priceRange?.start?.gross.currency,
+						lowPrice: product.pricing?.priceRange?.start?.gross.amount,
+						highPrice: product.pricing?.priceRange?.stop?.gross.amount,
+					},
+				}),
 	};
 
 	return (
@@ -191,9 +192,10 @@ export default async function Page({
 						/>
 					)}
 				</div>
-				<div className="flex flex-col pt-6 sm:col-span-1 sm:px-6 sm:pt-0 lg:col-span-3 lg:pt-16">
-					<div>
-						<h1 className="mb-4 font-[`Haffer`] flex-auto text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">
+				<div className="flex flex-col sm:col-span-1 lg:col-span-3 ">
+					<Nav channel={"default-channel"} />
+					<div className="pt-6 sm:px-6 sm:pt-0 lg:pt-16">
+						<h1 className="mb-4 flex-auto font-[`Haffer`] text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">
 							{product?.name}
 						</h1>
 						<p className="mb-8 text-sm " data-testid="ProductElement_Price">
