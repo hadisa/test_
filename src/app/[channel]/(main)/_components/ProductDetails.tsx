@@ -1,20 +1,19 @@
 "use client"
 import { useEffect } from "react";
+import { AddButton } from "../products/[slug]/AddButton";
+import { useTheme } from "next-themes";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { formatMoney, formatMoneyRange } from "@/lib/utils";
 import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
 import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
 import { VariantSelector } from "@/ui/components/VariantSelector";
 import edjsHTML from "editorjs-html";
-import { useTheme } from "next-themes";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import xss from "xss";
-import { AddButton } from "../products/[slug]/AddButton";
 
 const parser = edjsHTML();
 
-const Productdetails = ({ product, channel }: any) => {
+const ProductDetails = ({ product, channel }: any) => {
     const { theme } = useTheme();
-
     const searchParams = useSearchParams();
     const { push } = useRouter();
     const pathname = usePathname();
@@ -29,10 +28,8 @@ const Productdetails = ({ product, channel }: any) => {
 
     const productImage = product.thumbnail;
     const description = product?.description ? parser.parse(JSON.parse(product?.description)) : null;
-
     const variants = product.variants;
-    // const selectedVariantID = searchParams.variant;
-    const selectedVariantID = null;
+    const selectedVariantID = null; // You can uncomment this line if you have a selectedVariantID
     const selectedVariant = variants?.find(({ id }: any) => id === selectedVariantID);
 
     const addItem = () => { };
@@ -67,7 +64,6 @@ const Productdetails = ({ product, channel }: any) => {
             }
             : {
                 name: product.name,
-
                 description: product.seoDescription || product.name,
                 offers: {
                     "@type": "AggregateOffer",
@@ -123,8 +119,8 @@ const Productdetails = ({ product, channel }: any) => {
                         </div>
                         {description && (
                             <div className="mt-8 space-y-6 text-sm text-gray-500 dark:text-gray-400">
-                                {description.map((content) => (
-                                    <div key={content} dangerouslySetInnerHTML={{ __html: xss(content) }} />
+                                {description.map((content: string, index: number) => (
+                                    <div key={index} dangerouslySetInnerHTML={{ __html: xss(content) }} />
                                 ))}
                             </div>
                         )}
@@ -134,4 +130,6 @@ const Productdetails = ({ product, channel }: any) => {
         </section>
     );
 };
-export default Productdetails;
+
+export default ProductDetails;
+
