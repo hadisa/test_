@@ -12,7 +12,6 @@ export default function RootLayout(props: { children: React.ReactNode; params: {
 		<>
 			{/* <Header channel={props.params.channel} /> */}
 			<Header />
-			{props.params.channel}
 			{/* <div className="w-full flex justify-end p-5"><ThemeSwitch /></div> */}
 			<div className="flex min-h-[calc(100dvh-64px)] flex-col">
 				<main className="flex-1">{props.children}</main>
