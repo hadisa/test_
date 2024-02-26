@@ -1,4 +1,10 @@
-
+import edjsHTML from "editorjs-html";
+import { revalidatePath } from "next/cache";
+import { notFound } from "next/navigation";
+import { type Product, type WithContext } from "schema-dts";
+import { invariant } from "ts-invariant";
+import xss from "xss";
+import { AddButton } from "./products/[slug]/AddButton";
 import { ProductDetailsDocument, ProductListByCollectionDocument } from "@/gql/graphql";
 import * as Checkout from "@/lib/checkout";
 import { executeGraphQL } from "@/lib/graphql";
@@ -7,23 +13,11 @@ import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
 import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
 import { VariantSelector } from "@/ui/components/VariantSelector";
 import { Nav } from "@/ui/components/nav/Nav";
-import edjsHTML from "editorjs-html";
-import { revalidatePath } from "next/cache";
-import { notFound } from "next/navigation";
-import { type Product, type WithContext } from "schema-dts";
-import { invariant } from "ts-invariant";
-import xss from "xss";
-import { AddButton } from "./products/[slug]/AddButton";
-// import useStateProvider from "@/checkout/providers/StateProviderServer";
 
 const parser = edjsHTML();
 
-export default async function Page({ params }: { params: { channel: string, theme: any } }) {
-
-
-	// const { theme }: any = useTheme()
-	// let theme = 'light'
-	console.log("Theme in the page ::", params.channel, params.theme)
+export default async function Page({ params }: { params: { channel: string; theme: any } }) {
+	console.log("Theme in the page ::", params.channel, params.theme);
 	const data = await executeGraphQL(ProductListByCollectionDocument, {
 		variables: {
 			slug: "featured-products",
@@ -37,7 +31,7 @@ export default async function Page({ params }: { params: { channel: string, them
 	const products = data.collection?.products.edges.map(({ node: product }) => product);
 	let product; // Declare product variable outside the if-else block
 
-	if (params.theme === 'dark') {
+	if (params.theme === "dark") {
 		const darkProduct = await executeGraphQL(ProductDetailsDocument, {
 			variables: {
 				slug: decodeURIComponent(products[1].slug),
@@ -72,7 +66,7 @@ export default async function Page({ params }: { params: { channel: string, them
 	const selectedVariant = variants?.find(({ id }) => id === selectedVariantID);
 
 	async function addItem() {
-		"use server";
+		// "use server";
 
 		const checkout = await Checkout.findOrCreate({
 			checkoutId: Checkout.getIdFromCookies(params.channel),
