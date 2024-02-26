@@ -1,14 +1,15 @@
 "use client"
 import { useEffect } from "react";
-import { AddButton } from "../products/[slug]/AddButton";
 import { useTheme } from "next-themes";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import edjsHTML from "editorjs-html";
+import xss from "xss";
+import { AddButton } from "../products/[slug]/AddButton";
 import { formatMoney, formatMoneyRange } from "@/lib/utils";
 import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
 import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
-import { VariantSelector } from "@/ui/components/VariantSelector";
-import edjsHTML from "editorjs-html";
-import xss from "xss";
+import { VariantSelector } from "@/ui/components/VariantSelector"
+
 
 const parser = edjsHTML();
 
