@@ -1,16 +1,15 @@
 'use client'
 import { formatMoney, formatMoneyRange } from "@/lib/utils";
 import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
+import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
 import { VariantSelector } from "@/ui/components/VariantSelector";
 import edjsHTML from "editorjs-html";
 import { useTheme } from "next-themes";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+import { Product, WithContext } from "schema-dts";
 import xss from "xss";
 import { AddButton } from "../products/[slug]/AddButton";
-import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
-import { Product, WithContext } from "schema-dts";
-import { useEffect } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Nav } from "@/ui/components/nav/Nav";
 
 const parser = edjsHTML();
 
@@ -115,7 +114,7 @@ const Productdetails = ({ product, channel, }: any) => {
     };
 
     return (
-        <section className="mx-auto grid max-w-7xl p-8">
+        <section className="mx-auto grid max-w-7xl">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
@@ -135,7 +134,7 @@ const Productdetails = ({ product, channel, }: any) => {
                     )}
                 </div>
                 <div className="flex flex-col sm:col-span-1 lg:col-span-3 ">
-                    {/* <Nav channel={"default-channel"} /> */}
+                    {/* <HeaderNav channel={"default-channel"} /> */}
                     <div className="pt-6 sm:px-6 sm:pt-0 lg:pt-16">
                         <h1 className="mb-4 flex-auto font-[`Haffer`] text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">
                             {product?.name}

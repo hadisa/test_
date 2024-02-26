@@ -2,6 +2,7 @@ import { ProductDetailsDocument, ProductListByCollectionDocument } from "@/gql/g
 import { executeGraphQL } from "@/lib/graphql";
 import { notFound } from "next/navigation";
 import Productdetails from "./_components/ProductDetails";
+import { Nav } from "@/ui/components/nav/Nav";
 
 
 export default async function Page({ params, searchParams }: { searchParams: any, params: { channel: string } }) {
@@ -30,5 +31,10 @@ export default async function Page({ params, searchParams }: { searchParams: any
 	}
 
 
-	return <Productdetails product={product} channel={params.channel} />
+	return (
+		<div className="mx-auto grid max-w-7xl p-8">
+			<Nav channel={params.channel} />
+			<Productdetails product={product} channel={params.channel} />
+		</div>
+	)
 }

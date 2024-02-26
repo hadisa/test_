@@ -1,25 +1,17 @@
 "use client"
 import { useStateProvider } from '@/checkout/providers/StateProvider';
 import { useTheme } from 'next-themes';
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
 
 export const ThemeSwitch = () => {
     const [mounted, setMounted] = useState(false)
     const { theme, setTheme, resolvedTheme }: any = useTheme()
     const { setIsDarkTheme }: any = useStateProvider();
-    const searchParams = useSearchParams();
-    const pathname = usePathname();
+
     const router = useRouter();
 
 
-    useEffect(() => {
-        const params = new URLSearchParams(searchParams);
-        params.set('theme', theme);
-        router.push(`${pathname}?${params.toString()}`);
-        const search = searchParams.get('theme')
-        console.log("search ==>", search)
-    }, [theme])
 
     // When mounted on client, now we can show the UI
     useEffect(() => setMounted(true), [])
