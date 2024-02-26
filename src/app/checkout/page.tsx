@@ -17,16 +17,16 @@ export default function CheckoutPage({
 	}
 
 	return (
-		<div className="min-h-dvh bg-white">
-			<section className="mx-auto flex min-h-dvh max-w-7xl flex-col p-8">
+		<div className="min-h-dvh dark:bg-gray-900 bg-white">
+			<section className="mx-auto flex min-h-dvh max-w-7xl flex-col p-8 dark:bg-gray-900 bg-white">
 				<div className="flex items-center font-bold">
 					<a aria-label="homepage" href="/">
 						ACME
 					</a>
 				</div>
-				<h1 className="mt-8 text-3xl font-bold text-neutral-900">Checkout</h1>
+				<h1 className="mt-8 text-3xl font-bold text-gray-900 dark:bg-gray-900 bg-white dark:text-gray-100">Checkout</h1>
 
-				<section className="mb-12 mt-6 flex-1">
+				<section className="mb-12 mt-6 flex-1 dark:bg-gray-900 bg-white ">
 					<RootWrapper saleorApiUrl={process.env.NEXT_PUBLIC_SALEOR_API_URL} />
 				</section>
 			</section>

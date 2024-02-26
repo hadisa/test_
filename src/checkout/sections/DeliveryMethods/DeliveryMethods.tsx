@@ -35,9 +35,9 @@ export const DeliveryMethods: React.FC<CommonSectionProps> = ({ collapsed }) => 
 		<FormProvider form={form}>
 			<Divider />
 			<div className="py-4" data-testid="deliveryMethods">
-				<Title className="mb-2">Delivery methods</Title>
+				<Title className="mb-2 text-gray-900 dark:text-gray-100">Delivery methods</Title>
 				{!authenticated && !shippingAddress && (
-					<p>Please fill in shipping address to see available shipping methods</p>
+					<p className="text-gray-500 dark:text-gray-400">Please fill in shipping address to see available shipping methods</p>
 				)}
 				{authenticated && !shippingAddress && updateState.checkoutShippingUpdate ? (
 					<DeliveryMethodsSkeleton />
@@ -48,10 +48,10 @@ export const DeliveryMethods: React.FC<CommonSectionProps> = ({ collapsed }) => 
 								<SelectBox key={id} name="selectedMethodId" value={id}>
 									<div className="min-h-12 pointer-events-none flex grow flex-col justify-center">
 										<div className="flex flex-row items-center justify-between self-stretch">
-											<p>{name}</p>
-											<p>{getFormattedMoney(price)}</p>
+											<p className="text-gray-500 dark:text-gray-400">{name}</p>
+											<p className="text-gray-500 dark:text-gray-400">{getFormattedMoney(price)}</p>
 										</div>
-										<p className="font-xs" color="secondary">
+										<p className="font-xs text-gray-500 dark:text-gray-400" color="secondary">
 											{getSubtitle({ min, max })}
 										</p>
 									</div>

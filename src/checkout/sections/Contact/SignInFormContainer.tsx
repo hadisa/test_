@@ -19,13 +19,13 @@ export const SignInFormContainer: React.FC<PropsWithChildren<SignInFormContainer
 	children,
 }) => {
 	return (
-		<div className="py-4">
+		<div className="py-4 bg-transparent">
 			<div className="mb-2 flex flex-col">
 				<div className="flex flex-row items-baseline justify-between @container">
 					<Title>{title}</Title>
 					<div className="flex flex-row">
 						{redirectSubtitle && (
-							<p color="secondary" className="mr-2 hidden @sm:inline">
+							<p color="secondary" className="mr-2 hidden @sm:inline text-gray-500 dark:text-gray-400">
 								{redirectSubtitle}
 							</p>
 						)}

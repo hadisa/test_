@@ -15,9 +15,9 @@ import { type OptionalAddress } from "@/checkout/components/AddressForm/types";
 import { getByMatchingAddress } from "@/checkout/components/AddressForm/utils";
 import { type AddressFragment } from "@/checkout/graphql";
 
-interface UserBillingAddressSectionProps {}
+interface UserBillingAddressSectionProps { }
 
-export const UserBillingAddressSection: React.FC<UserBillingAddressSectionProps> = ({}) => {
+export const UserBillingAddressSection: React.FC<UserBillingAddressSectionProps> = ({ }) => {
 	const {
 		checkout: { isShippingRequired },
 	} = useCheckout();
@@ -65,6 +65,7 @@ export const UserBillingAddressSection: React.FC<UserBillingAddressSectionProps>
 							name="billingSameAsShipping"
 							label="Use shipping address as billing address"
 							data-testid={"useShippingAsBillingCheckbox"}
+
 						/>
 					</FormProvider>
 				</div>

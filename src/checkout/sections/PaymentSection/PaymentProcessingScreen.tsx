@@ -26,7 +26,7 @@ export const PaymentProcessingScreen = ({ children }: { children: ReactNode }) =
 	return (
 		<Provider value={useMemo(() => ({ setIsProcessingPayment: handleSetProcessing }), [handleSetProcessing])}>
 			{isProcessingPayment && (
-				<div className="fixed inset-0 z-50 flex flex-col items-center bg-gray-100">
+				<div className="fixed inset-0 z-50 flex flex-col items-center dark:bg-gray-800 bg-gray-100">
 					<div className="flex flex-grow flex-col justify-center pb-40">
 						<Title>Almost done…</Title>
 						<BarLoader width="100%" />

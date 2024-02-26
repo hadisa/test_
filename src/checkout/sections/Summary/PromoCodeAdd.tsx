@@ -39,7 +39,7 @@ export const PromoCodeAdd: FC<Classes> = ({ className }) => {
 	return (
 		<FormProvider form={form}>
 			<div className={clsx("relative my-4", className)}>
-				<TextInput required={false} name="promoCode" label="Add gift card or discount code" />
+				<TextInput required={false} className="tex-gray-800" name="promoCode" label="Add gift card or discount code" />
 				{showApplyButton && (
 					<Button
 						className="absolute bottom-2.5 right-3"

@@ -3,7 +3,7 @@ import { Skeleton } from "@/checkout/components/Skeleton";
 
 export const OrderConfirmationSkeleton = () => {
 	return (
-		<div className="page">
+		<div className="page dark:bg-gray-900 bg-white">
 			<header>
 				<Skeleton className="title mb-6 h-4 w-72" />
 				<Skeleton />

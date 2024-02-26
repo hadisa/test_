@@ -1,10 +1,4 @@
-import edjsHTML from "editorjs-html";
-import { revalidatePath } from "next/cache";
-import { notFound } from "next/navigation";
-import { type Product, type WithContext } from "schema-dts";
-import { invariant } from "ts-invariant";
-import xss from "xss";
-import { AddButton } from "./products/[slug]/AddButton";
+
 import { ProductDetailsDocument, ProductListByCollectionDocument } from "@/gql/graphql";
 import * as Checkout from "@/lib/checkout";
 import { executeGraphQL } from "@/lib/graphql";
@@ -13,10 +7,23 @@ import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
 import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
 import { VariantSelector } from "@/ui/components/VariantSelector";
 import { Nav } from "@/ui/components/nav/Nav";
+import edjsHTML from "editorjs-html";
+import { revalidatePath } from "next/cache";
+import { notFound } from "next/navigation";
+import { type Product, type WithContext } from "schema-dts";
+import { invariant } from "ts-invariant";
+import xss from "xss";
+import { AddButton } from "./products/[slug]/AddButton";
+// import useStateProvider from "@/checkout/providers/StateProviderServer";
 
 const parser = edjsHTML();
 
-export default async function Page({ params }: { params: { channel: string } }) {
+export default async function Page({ params }: { params: { channel: string, theme: any } }) {
+
+
+	// const { theme }: any = useTheme()
+	// let theme = 'light'
+	console.log("Theme in the page ::", params.channel, params.theme)
 	const data = await executeGraphQL(ProductListByCollectionDocument, {
 		variables: {
 			slug: "featured-products",
@@ -28,14 +35,29 @@ export default async function Page({ params }: { params: { channel: string } }) 
 	if (!data.collection?.products) throw Error("No products found");
 
 	const products = data.collection?.products.edges.map(({ node: product }) => product);
+	let product; // Declare product variable outside the if-else block
 
-	const { product } = await executeGraphQL(ProductDetailsDocument, {
-		variables: {
-			slug: decodeURIComponent(products[0].slug),
-			channel: params.channel,
-		},
-		revalidate: 60,
-	});
+	if (params.theme === 'dark') {
+		const darkProduct = await executeGraphQL(ProductDetailsDocument, {
+			variables: {
+				slug: decodeURIComponent(products[1].slug),
+				channel: params.channel,
+			},
+			revalidate: 60,
+		});
+
+		product = darkProduct.product;
+	} else {
+		const lightProduct = await executeGraphQL(ProductDetailsDocument, {
+			variables: {
+				slug: decodeURIComponent(products[1].slug),
+				channel: params.channel,
+			},
+			revalidate: 60,
+		});
+
+		product = lightProduct.product;
+	}
 
 	if (!product) {
 		notFound();
@@ -82,9 +104,9 @@ export default async function Page({ params }: { params: { channel: string } }) 
 		? formatMoney(selectedVariant.pricing.price.gross.amount, selectedVariant.pricing.price.gross.currency)
 		: isAvailable
 			? formatMoneyRange({
-					start: product?.pricing?.priceRange?.start?.gross,
-					stop: product?.pricing?.priceRange?.stop?.gross,
-				})
+				start: product?.pricing?.priceRange?.start?.gross,
+				stop: product?.pricing?.priceRange?.stop?.gross,
+			})
 			: "";
 
 	const productJsonLd: WithContext<Product> = {
@@ -93,31 +115,31 @@ export default async function Page({ params }: { params: { channel: string } }) 
 		image: product.thumbnail?.url,
 		...(selectedVariant
 			? {
-					name: `${product.name} - ${selectedVariant.name}`,
-					description: product.seoDescription || `${product.name} - ${selectedVariant.name}`,
-					offers: {
-						"@type": "Offer",
-						availability: selectedVariant.quantityAvailable
-							? "https://schema.org/InStock"
-							: "https://schema.org/OutOfStock",
-						priceCurrency: selectedVariant.pricing?.price?.gross.currency,
-						price: selectedVariant.pricing?.price?.gross.amount,
-					},
-				}
+				name: `${product.name} - ${selectedVariant.name}`,
+				description: product.seoDescription || `${product.name} - ${selectedVariant.name}`,
+				offers: {
+					"@type": "Offer",
+					availability: selectedVariant.quantityAvailable
+						? "https://schema.org/InStock"
+						: "https://schema.org/OutOfStock",
+					priceCurrency: selectedVariant.pricing?.price?.gross.currency,
+					price: selectedVariant.pricing?.price?.gross.amount,
+				},
+			}
 			: {
-					name: product.name,
+				name: product.name,
 
-					description: product.seoDescription || product.name,
-					offers: {
-						"@type": "AggregateOffer",
-						availability: product.variants?.some((variant) => variant.quantityAvailable)
-							? "https://schema.org/InStock"
-							: "https://schema.org/OutOfStock",
-						priceCurrency: product.pricing?.priceRange?.start?.gross.currency,
-						lowPrice: product.pricing?.priceRange?.start?.gross.amount,
-						highPrice: product.pricing?.priceRange?.stop?.gross.amount,
-					},
-				}),
+				description: product.seoDescription || product.name,
+				offers: {
+					"@type": "AggregateOffer",
+					availability: product.variants?.some((variant) => variant.quantityAvailable)
+						? "https://schema.org/InStock"
+						: "https://schema.org/OutOfStock",
+					priceCurrency: product.pricing?.priceRange?.start?.gross.currency,
+					lowPrice: product.pricing?.priceRange?.start?.gross.amount,
+					highPrice: product.pricing?.priceRange?.stop?.gross.amount,
+				},
+			}),
 	};
 
 	return (

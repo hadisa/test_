@@ -7,13 +7,13 @@ export const OrderConfirmation = () => {
 	const { order } = useOrder();
 
 	return (
-		<main className="grid grid-cols-1 gap-x-16 lg:grid-cols-2">
+		<main className="grid grid-cols-1 gap-x-16 lg:grid-cols-2 bg-transparent">
 			<div>
 				<header>
-					<p className="mb-2 text-lg font-bold" data-testid="orderConfrmationTitle">
+					<p className="mb-2 text-lg font-bold text-gray-500 dark:text-gray-400" data-testid="orderConfrmationTitle">
 						Order #{order.number} confirmed
 					</p>
-					<p className="text-base">
+					<p className="text-base text-gray-500 dark:text-gray-400">
 						Thank you for placing your order. We&apos;ve received it and we will contact you as soon as your
 						package is shipped. A confirmation email has been sent to {order.userEmail}.
 					</p>

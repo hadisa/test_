@@ -1,8 +1,9 @@
+import { Wrapper } from "@/app/wrapper";
+import { StateProvider } from "@/checkout/providers/StateProvider";
+import { DraftModeNotification } from "@/ui/components/DraftModeNotification"; // Moved this import after React import
 import { type Metadata } from "next";
 import { Inter } from "next/font/google";
 import { type ReactNode } from "react";
-import { DraftModeNotification } from "@/ui/components/DraftModeNotification"; // Moved this import after React import
-import { Wrapper } from "@/app/wrapper";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,9 +22,11 @@ export default function RootLayout(props: { children: ReactNode }) {
 	return (
 		<html lang="en" className="min-h-dvh">
 			<body className={`${inter.className} min-h-dvh`}>
-				<Wrapper >
-					{children}
-				</Wrapper>
+				<StateProvider >
+					<Wrapper >
+						{children}
+					</Wrapper>
+				</StateProvider>
 				<DraftModeNotification />
 			</body>
 		</html>

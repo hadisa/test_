@@ -42,21 +42,21 @@ export const Select = <TName extends string, TData extends string>({
 	return (
 		<div className="space-y-0.5">
 			<label className="flex flex-col">
-				<span className="text-xs text-neutral-700">{label}</span>
+				<span className="text-xs text-gray-500 dark:text-gray-400">{label}</span>
 				<select
 					{...fieldProps}
 					{...rest}
 					onBlur={handleBlur}
 					onChange={handleChange}
-					className="mt-1 block w-full rounded-md border-neutral-300 shadow-sm focus:border-neutral-300 focus:ring focus:ring-neutral-200 focus:ring-opacity-50"
+					className="mt-1 block w-full rounded-md text-gray-800 border-neutral-300 shadow-sm focus:border-neutral-300 focus:ring focus:ring-neutral-200 focus:ring-opacity-50"
 				>
 					{showPlaceholder && (
-						<option disabled value="">
+						<option disabled value="" className="text-gray-800">
 							{placeholder}
 						</option>
 					)}
 					{options.map(({ label, value, disabled = false }) => (
-						<option value={value} disabled={disabled} key={label?.toString() + "_" + value}>
+						<option className="text-gray-800 " value={value} disabled={disabled} key={label?.toString() + "_" + value}>
 							{label}
 						</option>
 					))}

@@ -77,7 +77,7 @@ export const AddressForm: FC<PropsWithChildren<AddressFormProps>> = ({
 
 	return (
 		<>
-			<Title className="mb-4">{title}</Title>
+			<Title className="mb-4 text-gray-900 dark:text-gray-100">{title}</Title>
 			<div className="mt-2 grid grid-cols-1 gap-3">
 				<CountrySelect only={availableCountries} />
 				{orderedAddressFields.map((field) => {
@@ -99,6 +99,7 @@ export const AddressForm: FC<PropsWithChildren<AddressFormProps>> = ({
 								{...commonProps}
 								key={field}
 								placeholder={getFieldLabel("countryArea")}
+								className="text-gray-800"
 								options={
 									countryAreaChoices?.map(({ verbose, raw }) => ({
 										label: verbose as string,
@@ -110,7 +111,7 @@ export const AddressForm: FC<PropsWithChildren<AddressFormProps>> = ({
 					}
 
 					return (
-						<TextInput required={isRequired} {...commonProps} key={field} type={typeTags[field] || "text"} />
+						<TextInput className="text-gray-800" required={isRequired} {...commonProps} key={field} type={typeTags[field] || "text"} />
 					);
 				})}
 				{children}

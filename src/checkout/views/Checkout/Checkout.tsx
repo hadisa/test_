@@ -28,7 +28,7 @@ export const Checkout = () => {
 				{isEmptyCart ? (
 					<EmptyCartPage />
 				) : (
-					<div className="grid min-h-screen grid-cols-1 gap-x-16 lg:grid-cols-2">
+					<div className="grid min-h-screen grid-cols-1 gap-x-16 lg:grid-cols-2 bg-transparent">
 						<Suspense fallback={<CheckoutFormSkeleton />}>
 							<CheckoutForm />
 						</Suspense>

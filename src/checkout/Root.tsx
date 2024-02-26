@@ -1,6 +1,6 @@
 "use client";
+import { PageNotFound } from "@/checkout/views/PageNotFound"; // Move the import here
 import { useAuthChange, useSaleorAuthContext } from "@saleor/auth-sdk/react";
-import { ThemeProvider } from "next-themes";
 import { useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { ToastContainer } from "react-toastify";
@@ -15,7 +15,6 @@ import {
 import { alertsContainerProps } from "./hooks/useAlerts/consts";
 import "./index.css";
 import { RootViews } from "./views/RootViews";
-import { PageNotFound } from "@/checkout/views/PageNotFound"; // Move the import here
 
 export const Root = ({ saleorApiUrl }: { saleorApiUrl: string }) => {
 	const saleorAuthClient = useSaleorAuthContext();
@@ -37,13 +36,12 @@ export const Root = ({ saleorApiUrl }: { saleorApiUrl: string }) => {
 	});
 
 	return (
-		<ThemeProvider attribute="class" defaultTheme={"light"} enableSystem>
-			<UrqlProvider value={urqlClient}>
-				<ToastContainer {...alertsContainerProps} />
-				<ErrorBoundary FallbackComponent={PageNotFound}>
-					<RootViews />
-				</ErrorBoundary>
-			</UrqlProvider>
-		</ThemeProvider>
+		<UrqlProvider value={urqlClient}>
+			<ToastContainer {...alertsContainerProps} />
+			<ErrorBoundary FallbackComponent={PageNotFound}>
+				<RootViews />
+			</ErrorBoundary>
+		</UrqlProvider>
+
 	);
 };
