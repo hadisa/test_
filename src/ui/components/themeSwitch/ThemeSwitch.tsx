@@ -5,28 +5,23 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
 
 export const ThemeSwitch = () => {
-    const [mounted, setMounted] = useState(false)
-    const { theme, setTheme, resolvedTheme }: any = useTheme()
-    const { setIsDarkTheme }: any = useStateProvider();
-
+    const [mounted, setMounted] = useState(false);
+    const { theme, setTheme, resolvedTheme } = useTheme();
     const router = useRouter();
 
-
-
     // When mounted on client, now we can show the UI
-    useEffect(() => setMounted(true), [])
+    useEffect(() => setMounted(true), []);
 
     if (!mounted) {
-        return null
+        return null;
     }
 
     // Function to toggle theme and update query parameter
     const toggleTheme = () => {
         const currentTheme = theme === 'dark' || resolvedTheme === 'dark' ? 'light' : 'dark';
-        setIsDarkTheme(theme === 'dark');
         setTheme(currentTheme);
         localStorage.setItem('theme', currentTheme);
-        router.refresh()
+        router.refresh();
     };
 
     return (
@@ -51,5 +46,5 @@ export const ThemeSwitch = () => {
                 )}
             </svg>
         </button>
-    )
-}
+    );
+};

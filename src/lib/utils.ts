@@ -1,10 +1,3 @@
-import { ProductDetailsDocument, ProductListByCollectionDocument } from "@/gql/graphql";
-import { default as edjsHTML } from "editorjs-html";
-import { NextPageContext } from "next";
-import { notFound } from "next/navigation";
-import { executeGraphQL } from "./graphql";
-
-const parser = edjsHTML();
 export const formatDate = (date: Date | number) => {
 	return new Intl.DateTimeFormat("en-US", { dateStyle: "medium" }).format(date);
 };
@@ -47,42 +40,4 @@ export function getHrefForVariant({
 
 	const query = new URLSearchParams({ variant: variantId });
 	return `${pathname}?${query.toString()}`;
-}
-
-
-
-export async function getServerSideProps(context: NextPageContext) {
-	const { params }: any = context;
-
-	const data = await executeGraphQL(ProductListByCollectionDocument, {
-		variables: {
-			slug: 'featured-products',
-			channel: params.channel,
-		},
-		revalidate: 60,
-	});
-
-	if (!data.collection?.products) {
-		notFound();
-	}
-
-	const products = data.collection?.products.edges.map(({ node: product }) => product);
-
-	const { product } = await executeGraphQL(ProductDetailsDocument, {
-		variables: {
-			slug: decodeURIComponent(products[0].slug),
-			channel: params.channel,
-		},
-		revalidate: 60,
-	});
-
-	if (!product) {
-		notFound();
-	}
-
-	const firstImage = product.thumbnail;
-	const description = product?.description ? parser.parse(JSON.parse(product?.description)) : null;
-	const variants = product.variants;
-
-	return { props: { params, product, firstImage, description, variants } };
 }
