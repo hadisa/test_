@@ -30,7 +30,7 @@ const ProductDetails = ({ product, channel }: any) => {
     const productImage = product.thumbnail;
     const description = product?.description ? parser.parse(JSON.parse(product?.description)) : null;
     const variants = product.variants;
-    const selectedVariantID = null; // You can uncomment this line if you have a selectedVariantID
+    const selectedVariantID = null;
     const selectedVariant = variants?.find(({ id }: any) => id === selectedVariantID);
 
     const addItem = () => { };
