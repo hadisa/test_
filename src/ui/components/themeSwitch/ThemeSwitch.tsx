@@ -1,5 +1,4 @@
 "use client"
-import { useStateProvider } from '@/checkout/providers/StateProvider';
 import { useTheme } from 'next-themes';
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
