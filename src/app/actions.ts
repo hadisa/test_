@@ -6,3 +6,4 @@ export async function logout() {
 	"use server";
 	saleorAuthClient.signOut();
 }
+

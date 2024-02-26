@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import Productdetails from "./_components/ProductDetails";
 
 
-export default async function Page({ params, searchParams }: { searchParams: any, params: { channel: string } }) {
+export default async function Page({ params }: { params: { channel: string } }) {
 	const data = await executeGraphQL(ProductListByCollectionDocument, {
 		variables: {
 			slug: "featured-products",
@@ -19,7 +19,7 @@ export default async function Page({ params, searchParams }: { searchParams: any
 
 	const { product } = await executeGraphQL(ProductDetailsDocument, {
 		variables: {
-			slug: decodeURIComponent(searchParams.type === 'light' ? products[0].slug : products[1].slug),
+			slug: decodeURIComponent(products[0].slug),
 			channel: params.channel,
 		},
 		revalidate: 60,
@@ -30,5 +30,5 @@ export default async function Page({ params, searchParams }: { searchParams: any
 	}
 
 
-	return <Productdetails product={product} channel={params.channel} />
+	return <Productdetails product={product} products={products} params={params} />
 }

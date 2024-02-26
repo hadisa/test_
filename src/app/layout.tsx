@@ -4,6 +4,7 @@ import { type ReactNode } from "react";
 import { DraftModeNotification } from "@/ui/components/DraftModeNotification"; // Moved this import after React import
 import { Wrapper } from "@/app/wrapper";
 import "./globals.css";
+import AppProvider from "@/contexts/AppProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,10 +22,10 @@ export default function RootLayout(props: { children: ReactNode }) {
 	return (
 		<html lang="en" className="min-h-dvh">
 			<body className={`${inter.className} min-h-dvh`}>
-				<Wrapper >
+				<AppProvider>
 					{children}
-				</Wrapper>
-				<DraftModeNotification />
+					<DraftModeNotification />
+				</AppProvider>
 			</body>
 		</html>
 	);
