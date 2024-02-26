@@ -1,4 +1,5 @@
-'use client'
+"use client"
+import { useEffect } from "react";
 import { formatMoney, formatMoneyRange } from "@/lib/utils";
 import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
 import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
@@ -6,15 +7,13 @@ import { VariantSelector } from "@/ui/components/VariantSelector";
 import edjsHTML from "editorjs-html";
 import { useTheme } from "next-themes";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { Product, WithContext } from "schema-dts";
 import xss from "xss";
 import { AddButton } from "../products/[slug]/AddButton";
 
 const parser = edjsHTML();
 
-const Productdetails = ({ product, channel, }: any) => {
-    const { theme } = useTheme()
+const Productdetails = ({ product, channel }: any) => {
+    const { theme } = useTheme();
 
     const searchParams = useSearchParams();
     const { push } = useRouter();
@@ -26,9 +25,7 @@ const Productdetails = ({ product, channel, }: any) => {
             params.set("type", theme);
             push(`${pathname}?${params.toString()}`);
         }
-    }, [theme])
-
-
+    }, [theme]);
 
     const productImage = product.thumbnail;
     const description = product?.description ? parser.parse(JSON.parse(product?.description)) : null;
@@ -38,37 +35,8 @@ const Productdetails = ({ product, channel, }: any) => {
     const selectedVariantID = null;
     const selectedVariant = variants?.find(({ id }: any) => id === selectedVariantID);
 
-    // async function addItem() {
-    //     // "use server";
+    const addItem = () => { };
 
-    //     // const checkout = await Checkout.findOrCreate({
-    //     // 	checkoutId: Checkout.getIdFromCookies(params.channel),
-    //     // 	channel: params.channel,
-    //     // });
-    //     // invariant(checkout, "This should never happen");
-
-    //     // Checkout.saveIdToCookie(params.channel, checkout.id);
-
-    //     // // if (!selectedVariantID) {
-    //     // // 	return;
-    //     // // }
-
-    //     // // TODO: error handling
-    //     // // await executeGraphQL(CheckoutAddLineDocument, {
-    //     // // 	variables: {
-    //     // // 		id: checkout.id,
-    //     // // 		productVariantId: decodeURIComponent(selectedVariantID),
-    //     // // 	},
-    //     // // 	cache: "no-cache",
-    //     // // });
-
-    //     // revalidatePath("/cart");
-    // }
-
-
-    const addItem = () => {
-
-    }
     const isAvailable = variants?.some((variant: any) => variant.quantityAvailable) ?? false;
 
     const price = selectedVariant?.pricing?.price?.gross
@@ -80,7 +48,7 @@ const Productdetails = ({ product, channel, }: any) => {
             })
             : "";
 
-    const productJsonLd: WithContext<Product> = {
+    const productJsonLd = {
         "@context": "https://schema.org",
         "@type": "Product",
         image: product.thumbnail?.url,
@@ -134,7 +102,6 @@ const Productdetails = ({ product, channel, }: any) => {
                     )}
                 </div>
                 <div className="flex flex-col sm:col-span-1 lg:col-span-3 ">
-                    {/* <HeaderNav channel={"default-channel"} /> */}
                     <div className="pt-6 sm:px-6 sm:pt-0 lg:pt-16">
                         <h1 className="mb-4 flex-auto font-[`Haffer`] text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">
                             {product?.name}
@@ -166,5 +133,5 @@ const Productdetails = ({ product, channel, }: any) => {
             </form>
         </section>
     );
-}
-export default Productdetails
+};
+export default Productdetails;

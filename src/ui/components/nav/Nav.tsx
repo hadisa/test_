@@ -19,7 +19,7 @@ export const Nav = ({ channel }: { channel: string }) => {
 				</Suspense> */}
 			</div>
 			<div className="flex items-center">
-				<Suspense fallback={<div className="w-6" />}>
+				<Suspense fallback={<div className="w-6 pb-[-10px]" />}>
 					<CartNavItem channel={channel} />
 				</Suspense>
 			</div>
