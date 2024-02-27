@@ -1,10 +1,8 @@
 "use client"
-import { useEffect } from "react";
 import xss from "xss"; // Import xss before other modules
-
+import { useEffect } from "react";
 import { useTheme } from "next-themes";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-
 import edjsHTML from "editorjs-html";
 import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
 import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
