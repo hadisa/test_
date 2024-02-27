@@ -1,5 +1,4 @@
 "use client";
-import { PageNotFound } from "@/checkout/views/PageNotFound"; // Move the import here
 import { useAuthChange, useSaleorAuthContext } from "@saleor/auth-sdk/react";
 import { useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
@@ -15,6 +14,7 @@ import {
 import { alertsContainerProps } from "./hooks/useAlerts/consts";
 import "./index.css";
 import { RootViews } from "./views/RootViews";
+import { PageNotFound } from "@/checkout/views/PageNotFound"; // Moved the import here
 
 export const Root = ({ saleorApiUrl }: { saleorApiUrl: string }) => {
 	const saleorAuthClient = useSaleorAuthContext();
@@ -42,6 +42,5 @@ export const Root = ({ saleorApiUrl }: { saleorApiUrl: string }) => {
 				<RootViews />
 			</ErrorBoundary>
 		</UrqlProvider>
-
 	);
 };
