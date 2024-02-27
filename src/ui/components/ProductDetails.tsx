@@ -35,7 +35,7 @@ function ProductDetails({ product, channel }: ProductDetailsProps) {
 	const variants = product?.variants;
 	const selectedVariantID = variants?.[0]?.id; // Assuming you want to select the first variant initially
 
-	const addItem = function (this: void) {
+	const addItem = () => {
 		console.log("You clicked on addItem!");
 	};
 
