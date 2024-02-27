@@ -1,19 +1,22 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client"
-import { useEffect } from "react";
-import { useTheme } from "next-themes";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import edjsHTML from "editorjs-html";
-import xss from "xss";
-import { AddButton } from "../products/[slug]/AddButton";
+import { Product } from "@/gql/graphql";
 import { formatMoney, formatMoneyRange } from "@/lib/utils";
 import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
 import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
-import { VariantSelector } from "@/ui/components/VariantSelector"
-
+import { VariantSelector } from "@/ui/components/VariantSelector";
+import edjsHTML from "editorjs-html";
+import { useTheme } from "next-themes";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+import xss from "xss"; // Import xss before other modules
 
 const parser = edjsHTML();
-
-const ProductDetails = ({ product, channel }: any) => {
+type ProductDetailsProps = {
+    product: Product | any;
+    channel: string;
+};
+function ProductDetails({ product, channel }: ProductDetailsProps) {
     const { theme } = useTheme();
     const searchParams = useSearchParams();
     const { push } = useRouter();
@@ -25,17 +28,20 @@ const ProductDetails = ({ product, channel }: any) => {
             params.set("type", theme);
             push(`${pathname}?${params.toString()}`);
         }
-    }, [theme]);
+    }, [theme, pathname, push, searchParams]);
 
-    const productImage = product.thumbnail;
-    const description = product?.description ? parser.parse(JSON.parse(product?.description)) : null;
-    const variants = product.variants;
-    const selectedVariantID = null;
-    const selectedVariant = variants?.find(({ id }: any) => id === selectedVariantID);
+    const productImage = product?.thumbnail;
+    const description = product?.description ? parser.parse(JSON.parse(product.description)) : null;
+    const variants = product?.variants;
+    const selectedVariantID = variants?.[0]?.id; // Assuming you want to select the first variant initially
 
-    const addItem = () => { };
+    const addItem = function (this: void) {
+        console.log("You clicked on addItem!");
+    };
 
-    const isAvailable = variants?.some((variant: any) => variant.quantityAvailable) ?? false;
+    const isAvailable = variants?.some((variant: { quantityAvailable: any; }) => variant.quantityAvailable) ?? false;
+
+    const selectedVariant = variants?.find(({ id }: { id: string }) => id === selectedVariantID);
 
     const price = selectedVariant?.pricing?.price?.gross
         ? formatMoney(selectedVariant.pricing.price.gross.amount, selectedVariant.pricing.price.gross.currency)
@@ -49,7 +55,7 @@ const ProductDetails = ({ product, channel }: any) => {
     const productJsonLd = {
         "@context": "https://schema.org",
         "@type": "Product",
-        image: product.thumbnail?.url,
+        image: product?.thumbnail?.url,
         ...(selectedVariant
             ? {
                 name: `${product.name} - ${selectedVariant.name}`,
@@ -59,21 +65,20 @@ const ProductDetails = ({ product, channel }: any) => {
                     availability: selectedVariant.quantityAvailable
                         ? "https://schema.org/InStock"
                         : "https://schema.org/OutOfStock",
-                    priceCurrency: selectedVariant.pricing?.price?.gross.currency,
-                    price: selectedVariant.pricing?.price?.gross.amount,
+                    priceCurrency: selectedVariant?.pricing?.price?.gross.currency,
+                    price: selectedVariant?.pricing?.price?.gross.amount,
                 },
             }
             : {
-                name: product.name,
-                description: product.seoDescription || product.name,
+                name: product?.name,
+                description: product?.seoDescription || product?.name,
                 offers: {
                     "@type": "AggregateOffer",
-                    availability: product.variants?.some((variant: any) => variant.quantityAvailable)
+                    availability: product?.variants?.some((variant: { quantityAvailable: any; }) => variant.quantityAvailable)
                         ? "https://schema.org/InStock"
                         : "https://schema.org/OutOfStock",
-                    priceCurrency: product.pricing?.priceRange?.start?.gross.currency,
-                    lowPrice: product.pricing?.priceRange?.start?.gross.amount,
-                    highPrice: product.pricing?.priceRange?.stop?.gross.amount,
+                    lowPrice: product?.pricing?.priceRange?.start?.gross.amount,
+                    highPrice: product?.pricing?.priceRange?.stop?.gross.amount,
                 },
             }),
     };
@@ -86,7 +91,7 @@ const ProductDetails = ({ product, channel }: any) => {
                     __html: JSON.stringify(productJsonLd),
                 }}
             />
-            <form className="grid gap-2 sm:grid-cols-2 lg:grid-cols-8" action={addItem}>
+            <form className="grid gap-2 sm:grid-cols-2 lg:grid-cols-8" onSubmit={addItem}>
                 <div className="md:col-span-1 lg:col-span-5">
                     {productImage && (
                         <ProductImageWrapper
@@ -116,7 +121,9 @@ const ProductDetails = ({ product, channel }: any) => {
                         )}
                         <AvailabilityMessage isAvailable={isAvailable} />
                         <div className="mt-8 ">
-                            <AddButton disabled={!selectedVariantID || !selectedVariant?.quantityAvailable} />
+                            <button type="submit" disabled={!selectedVariantID || !selectedVariant?.quantityAvailable}>
+                                Add to Cart
+                            </button>
                         </div>
                         {description && (
                             <div className="mt-8 space-y-6 text-sm text-gray-500 dark:text-gray-400">
@@ -131,6 +138,5 @@ const ProductDetails = ({ product, channel }: any) => {
         </section>
     );
 };
-
 export default ProductDetails;
 

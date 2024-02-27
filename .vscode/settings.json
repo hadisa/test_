@@ -25,5 +25,8 @@
 	},
 	"[svg]": {
 		"editor.defaultFormatter": "jock.svg"
-	}
+	},
+	"cSpell.words": [
+		"Productdetails"
+	]
 }
