@@ -1,4 +1,5 @@
 /* eslint-disable */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 import { Product } from "@/gql/graphql";
 import { formatMoney, formatMoneyRange } from "@/lib/utils";
