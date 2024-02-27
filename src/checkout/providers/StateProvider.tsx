@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 type State = {
     isDarkTheme: boolean;
@@ -14,7 +14,7 @@ const defaultValue: State = {
 
 export const Context = createContext<State>(defaultValue);
 
-export const StateProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const StateProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isDarkTheme, setIsDarkTheme] = useState(false);
 
     return (
