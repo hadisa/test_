@@ -11,14 +11,13 @@ body * {
     
 }
 
-/* @layer base {
-    body {
-        @apply dark:bg-gray-900 bg-white;
-    }
-} */
-
 @layer base {
     body {
         @apply dark:bg-[#030712] bg-white;
     }
+}
+[type=checkbox]:checked, [type=radio]:checked {
+   
+    background-color: #199888 !important;
+
 }
