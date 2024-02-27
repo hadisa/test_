@@ -1,16 +1,27 @@
 "use client"
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
-export const Context: any = createContext(null); // Named export
+type State = {
+    isDarkTheme: boolean;
+    setIsDarkTheme: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-export const StateProvider = ({ children }: any) => {
+const defaultValue: State = {
+    isDarkTheme: false,
+    setIsDarkTheme: () => { } // A default setter function
+};
+
+export const Context = createContext<State>(defaultValue);
+
+export const StateProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [isDarkTheme, setIsDarkTheme] = useState(false);
 
     return (
         <Context.Provider
             value={{
-                isDarkTheme, setIsDarkTheme
+                isDarkTheme,
+                setIsDarkTheme
             }}
         >
             {children}
@@ -19,4 +30,5 @@ export const StateProvider = ({ children }: any) => {
 };
 
 export const useStateProvider = () => useContext(Context);
+
 
