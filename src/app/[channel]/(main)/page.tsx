@@ -1,10 +1,10 @@
-import { executeGraphQL } from "@/lib/graphql";
 import { notFound } from "next/navigation";
 import Productdetails from "./_components/ProductDetails";
+import { executeGraphQL } from "@/lib/graphql"; // Import graphql after ProductDetails
 import { Nav } from "@/ui/components/nav/Nav";
 import { ProductDetailsDocument, ProductListByCollectionDocument } from "@/gql/graphql";
 
-export default async function Page({ params, searchParams }: { searchParams: any; params: { channel: string } }) {
+export default async function Page({ params, searchParams }: { searchParams: { type: string }; params: { channel: string } }) {
 	const data = await executeGraphQL(ProductListByCollectionDocument, {
 		variables: {
 			slug: "featured-products",
