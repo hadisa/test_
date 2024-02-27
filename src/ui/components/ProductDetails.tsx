@@ -1,5 +1,4 @@
 /* eslint-disable */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 import { Product } from "@/gql/graphql";
 import { formatMoney, formatMoneyRange } from "@/lib/utils";
@@ -13,11 +12,13 @@ import { useEffect } from "react";
 import xss from "xss"; // Import xss before other modules
 
 const parser = edjsHTML();
+
 type ProductDetailsProps = {
 	product: Product | any;
 	channel: string;
 };
-function ProductDetails({ product, channel }: ProductDetailsProps) {
+
+const ProductDetails = ({ product, channel }: ProductDetailsProps): JSX.Element => {
 	const { theme } = useTheme();
 	const searchParams = useSearchParams();
 	const { push } = useRouter();
@@ -36,7 +37,7 @@ function ProductDetails({ product, channel }: ProductDetailsProps) {
 	const variants = product?.variants;
 	const selectedVariantID = variants?.[0]?.id; // Assuming you want to select the first variant initially
 
-	const addItem = () => {
+	const addItem = (): void => {
 		console.log("You clicked on addItem!");
 	};
 
@@ -141,5 +142,6 @@ function ProductDetails({ product, channel }: ProductDetailsProps) {
 			</form>
 		</section>
 	);
-}
+};
+
 export default ProductDetails;
