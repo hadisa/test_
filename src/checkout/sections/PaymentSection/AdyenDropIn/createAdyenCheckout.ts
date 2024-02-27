@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
+/* eslint-disable import/no-unresolved */
 import AdyenCheckout from "@adyen/adyen-web";
 import { type CardElementData } from "@adyen/adyen-web/dist/types/components/Card/types";
 import type DropinElement from "@adyen/adyen-web/dist/types/components/Dropin";
@@ -9,6 +10,7 @@ import { PaymentResponse as AdyenApiPaymentResponse } from "@adyen/api-library/l
 import { type CreateCheckoutSessionResponse } from "@adyen/api-library/lib/src/typings/checkout/createCheckoutSessionResponse";
 import { type AdyenPaymentResponse } from "./types";
 import { replaceUrl } from "@/checkout/lib/utils/url";
+/* eslint-enable import/no-unresolved */
 
 export type AdyenDropInCreateSessionResponse = {
 	session: CreateCheckoutSessionResponse;

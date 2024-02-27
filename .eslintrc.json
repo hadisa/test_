@@ -13,6 +13,17 @@
 		"next/core-web-vitals"
 	],
 	"rules": {
+		// sort imports
+		"import/order": "error",
+
+		// no let exports
+		"import/no-mutable-exports": "error",
+
+		"import/no-cycle": "error",
+		"import/no-default-export": "error",
+
+		"import/no-unresolved": "off",
+
 		// allow {} even though it's unsafe but comes handy
 		"@typescript-eslint/ban-types": [
 			"error",
