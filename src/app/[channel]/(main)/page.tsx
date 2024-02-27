@@ -1,11 +1,18 @@
-import { executeGraphQL } from "@/lib/graphql";
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { notFound } from "next/navigation";
+import { executeGraphQL } from "@/lib/graphql"; // Import executeGraphQL before other modules
 
 import { Nav } from "@/ui/components/nav/Nav";
 import { ProductDetailsDocument, ProductListByCollectionDocument } from "@/gql/graphql";
 import ProductDetails from "@/ui/components/ProductDetails";
 
-export default async function Page({ params, searchParams }: { searchParams: any; params: { channel: string } }) {
+export default async function Page({
+	params,
+	searchParams,
+}: {
+	searchParams: any;
+	params: { channel: string };
+}) {
 	const data = await executeGraphQL(ProductListByCollectionDocument, {
 		variables: {
 			slug: "featured-products",
@@ -20,7 +27,7 @@ export default async function Page({ params, searchParams }: { searchParams: any
 
 	const { product } = await executeGraphQL(ProductDetailsDocument, {
 		variables: {
-			slug: decodeURIComponent(searchParams.type === 'light' ? products[0].slug : products[1].slug),
+			slug: decodeURIComponent(searchParams.type === "light" ? products[0].slug : products[1].slug),
 			channel: params.channel,
 		},
 		revalidate: 60,
