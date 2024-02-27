@@ -16,7 +16,7 @@ import { Nav } from "@/ui/components/nav/Nav";
 
 const parser = edjsHTML();
 
-export default async function Page({ params }: { params: { channel: string; theme: any } }) {
+export async function pageCopy2({ params }: { params: { channel: string; theme: any } }) {
 	console.log("Theme in the page ::", params.channel, params.theme);
 	const data = await executeGraphQL(ProductListByCollectionDocument, {
 		variables: {
