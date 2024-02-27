@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState } from "react";
 
-const Context: any = createContext(null);
+export const Context: any = createContext(null); // Named export
 
 export const StateProvider = ({ children }: any) => {
     const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -19,3 +19,4 @@ export const StateProvider = ({ children }: any) => {
 };
 
 export const useStateProvider = () => useContext(Context);
+
