@@ -10,6 +10,7 @@ import { useTheme } from "next-themes";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import xss from "xss"; // Import xss before other modules
+import { AddButton } from "./AddButton";
 
 const parser = edjsHTML();
 
@@ -126,9 +127,8 @@ const ProductDetails = ({ product, channel }: ProductDetailsProps): JSX.Element 
 						)}
 						<AvailabilityMessage isAvailable={isAvailable} />
 						<div className="mt-8 ">
-							<button type="submit" disabled={!selectedVariantID || !selectedVariant?.quantityAvailable}>
-								Add to Cart
-							</button>
+							{/* <button type="submit" disabled={!selectedVariantID || !selectedVariant?.quantityAvailable} /> */}
+							<AddButton disabled={!selectedVariantID || !selectedVariant?.quantityAvailable} />
 						</div>
 						{description && (
 							<div className="mt-8 space-y-6 text-sm text-gray-500 dark:text-gray-400">
