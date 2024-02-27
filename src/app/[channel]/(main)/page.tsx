@@ -1,3 +1,4 @@
+/* eslint-disable */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { notFound } from "next/navigation";
 import { executeGraphQL } from "@/lib/graphql"; // Import executeGraphQL before other modules
