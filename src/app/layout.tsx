@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 import { Inter } from "next/font/google";
-import React, { ReactNode } from "react"; // Moved React import to the top
+import React from "react"; // Moved React import to the top
 import { Wrapper } from "@/app/wrapper";
 import { StateProvider } from "@/checkout/providers/StateProvider";
 import { DraftModeNotification } from "@/ui/components/DraftModeNotification"; // Moved this import after React import
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 		: undefined,
 };
 
-export default function RootLayout(props: { children: ReactNode }) {
+export default function RootLayout(props: { children: React.ReactNode }) {
 	const { children } = props;
 
 	return (
