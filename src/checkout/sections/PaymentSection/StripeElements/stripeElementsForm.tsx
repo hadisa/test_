@@ -183,7 +183,7 @@ export function CheckoutForm() {
 		<form className="my-8 flex flex-col gap-y-6" onSubmit={onSubmitInitialize}>
 			<PaymentElement className="payment-element" options={paymentElementOptions} />
 			<button
-				className="h-12 items-center rounded-md bg-neutral-900 px-6 py-3 text-base font-medium leading-6 text-white shadow hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-70 hover:disabled:bg-neutral-700 aria-disabled:cursor-not-allowed aria-disabled:opacity-70 hover:aria-disabled:bg-neutral-700"
+				className="h-12 items-center rounded-md bg-bgComp px-6 py-3 text-base font-medium leading-6 text-white shadow hover:bg-bgComp_hover disabled:cursor-not-allowed disabled:opacity-70 hover:disabled:bg-neutral-700 aria-disabled:cursor-not-allowed aria-disabled:opacity-70 hover:aria-disabled:bg-neutral-700"
 				aria-disabled={isLoading || !stripe || !elements}
 				id="submit"
 			>

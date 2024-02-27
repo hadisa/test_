@@ -1,5 +1,6 @@
 import { invariant } from "ts-invariant";
 import { RootWrapper } from "./pageWrapper";
+import { Header } from "@/ui/components/Header";
 
 export const metadata = {
 	title: "Checkout · Saleor Storefront example",
@@ -17,16 +18,19 @@ export default function CheckoutPage({
 	}
 
 	return (
-		<div className="min-h-dvh dark:bg-gray-900 bg-white">
-			<section className="mx-auto flex min-h-dvh max-w-7xl flex-col p-8 dark:bg-gray-900 bg-white">
-				<div className="flex items-center font-bold">
+		<div className="min-h-dvh dark:bg-bgDark bg-white">
+			<Header />
+			<section className="mx-auto flex min-h-dvh max-w-7xl flex-col p-8 dark:bg-bgDark bg-white">
+
+				{/* <div className="flex items-center font-bold flex-row justify-between">
 					<a aria-label="homepage" href="/">
 						ACME
 					</a>
-				</div>
-				<h1 className="mt-8 text-3xl font-bold text-gray-900 dark:bg-gray-900 bg-white dark:text-gray-100">Checkout</h1>
+					
+				</div> */}
+				<h1 className="mt-8 text-3xl font-bold text-gray-900 dark:bg-bgDark bg-white dark:text-gray-100">Checkout</h1>
 
-				<section className="mb-12 mt-6 flex-1 dark:bg-gray-900 bg-white ">
+				<section className="mb-12 mt-6 flex-1 dark:bg-bgDark bg-white ">
 					<RootWrapper saleorApiUrl={process.env.NEXT_PUBLIC_SALEOR_API_URL} />
 				</section>
 			</section>

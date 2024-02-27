@@ -198,7 +198,7 @@ export default async function Page({
 						<h1 className="mb-4 flex-auto font-[`Haffer`] text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">
 							{product?.name}
 						</h1>
-						<p className="mb-8 text-sm " data-testid="ProductElement_Price">
+						<p className="mb-8 text-sm font-bold text-subTxt" data-testid="ProductElement_Price">
 							{price}
 						</p>
 

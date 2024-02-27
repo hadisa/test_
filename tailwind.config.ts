@@ -21,9 +21,12 @@ const config: Config = {
 			fontFamily: {
 				sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
 			},
-			// colors: {
-
-			// },
+			colors: {
+				bgComp: "#dcae39",
+				subTxt: "#199888",
+				bgComp_hover: "#dfb64c",
+				bgDark: "#030712",
+			},
 			typography: ({ theme }: any) => ({
 				DEFAULT: {
 					css: {

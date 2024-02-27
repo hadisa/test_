@@ -22,10 +22,10 @@ export const SignInFormContainer: React.FC<PropsWithChildren<SignInFormContainer
 		<div className="py-4 bg-transparent">
 			<div className="mb-2 flex flex-col">
 				<div className="flex flex-row items-baseline justify-between @container">
-					<Title>{title}</Title>
+					<Title className="text-gray-900 dark:text-gray-200">{title}</Title>
 					<div className="flex flex-row">
 						{redirectSubtitle && (
-							<p color="secondary" className="mr-2 hidden @sm:inline text-gray-500 dark:text-gray-400">
+							<p color="secondary" className="mr-2 hidden @sm:inline text-subTxt">
 								{redirectSubtitle}
 							</p>
 						)}

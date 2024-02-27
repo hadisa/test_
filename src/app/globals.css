@@ -11,8 +11,14 @@ body * {
     
 }
 
-@layer base {
+/* @layer base {
     body {
         @apply dark:bg-gray-900 bg-white;
+    }
+} */
+
+@layer base {
+    body {
+        @apply dark:bg-[#030712] bg-white;
     }
 }

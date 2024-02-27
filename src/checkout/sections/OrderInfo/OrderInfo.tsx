@@ -10,7 +10,7 @@ export const OrderInfo = () => {
 	} = useOrder();
 
 	return (
-		<section className="mt-8 dark:bg-gray-900 bg-white">
+		<section className="mt-8 dark:bg-bgDark bg-white">
 			<PaymentSection />
 			<DeliverySection deliveryMethod={deliveryMethod} />
 			<Section title="Contact details">

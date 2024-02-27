@@ -41,7 +41,7 @@ export const PasswordInputComponent = <TName extends string>({
 							{...field}
 							{...props}
 							className={clsx(
-								"block w-full appearance-none rounded-md border-neutral-300 pr-10 transition-colors focus:border-neutral-300 focus:outline-none focus:ring focus:ring-neutral-200 focus:ring-opacity-50 active:border-neutral-200 active:outline-none",
+								"block w-full appearance-none rounded-md border-neutral-300  dark:border-neutral-500 pr-10 transition-colors focus:border-neutral-300 focus:outline-none focus:ring focus:ring-neutral-200 focus:ring-opacity-50 active:border-neutral-200 active:outline-none",
 								{ "border-red-300": error },
 								props.className,
 							)}

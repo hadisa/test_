@@ -51,9 +51,9 @@ const ProductDetails = ({ product, channel }: ProductDetailsProps): JSX.Element 
 		? formatMoney(selectedVariant.pricing.price.gross.amount, selectedVariant.pricing.price.gross.currency)
 		: isAvailable
 			? formatMoneyRange({
-					start: product?.pricing?.priceRange?.start?.gross,
-					stop: product?.pricing?.priceRange?.stop?.gross,
-				})
+				start: product?.pricing?.priceRange?.start?.gross,
+				stop: product?.pricing?.priceRange?.stop?.gross,
+			})
 			: "";
 
 	const productJsonLd = {
@@ -62,31 +62,31 @@ const ProductDetails = ({ product, channel }: ProductDetailsProps): JSX.Element 
 		image: product?.thumbnail?.url,
 		...(selectedVariant
 			? {
-					name: `${product.name} - ${selectedVariant.name}`,
-					description: product.seoDescription || `${product.name} - ${selectedVariant.name}`,
-					offers: {
-						"@type": "Offer",
-						availability: selectedVariant.quantityAvailable
-							? "https://schema.org/InStock"
-							: "https://schema.org/OutOfStock",
-						priceCurrency: selectedVariant?.pricing?.price?.gross.currency,
-						price: selectedVariant?.pricing?.price?.gross.amount,
-					},
-				}
+				name: `${product.name} - ${selectedVariant.name}`,
+				description: product.seoDescription || `${product.name} - ${selectedVariant.name}`,
+				offers: {
+					"@type": "Offer",
+					availability: selectedVariant.quantityAvailable
+						? "https://schema.org/InStock"
+						: "https://schema.org/OutOfStock",
+					priceCurrency: selectedVariant?.pricing?.price?.gross.currency,
+					price: selectedVariant?.pricing?.price?.gross.amount,
+				},
+			}
 			: {
-					name: product?.name,
-					description: product?.seoDescription || product?.name,
-					offers: {
-						"@type": "AggregateOffer",
-						availability: product?.variants?.some(
-							(variant: { quantityAvailable: any }) => variant.quantityAvailable,
-						)
-							? "https://schema.org/InStock"
-							: "https://schema.org/OutOfStock",
-						lowPrice: product?.pricing?.priceRange?.start?.gross.amount,
-						highPrice: product?.pricing?.priceRange?.stop?.gross.amount,
-					},
-				}),
+				name: product?.name,
+				description: product?.seoDescription || product?.name,
+				offers: {
+					"@type": "AggregateOffer",
+					availability: product?.variants?.some(
+						(variant: { quantityAvailable: any }) => variant.quantityAvailable,
+					)
+						? "https://schema.org/InStock"
+						: "https://schema.org/OutOfStock",
+					lowPrice: product?.pricing?.priceRange?.start?.gross.amount,
+					highPrice: product?.pricing?.priceRange?.stop?.gross.amount,
+				},
+			}),
 	};
 
 	return (
@@ -111,10 +111,10 @@ const ProductDetails = ({ product, channel }: ProductDetailsProps): JSX.Element 
 				</div>
 				<div className="flex flex-col sm:col-span-1 lg:col-span-3 ">
 					<div className="pt-6 sm:px-6 sm:pt-0 lg:pt-16">
-						<h1 className="mb-4 flex-auto font-[`Haffer`] text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">
+						<h1 className="mb-4 flex-auto text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">
 							{product?.name}
 						</h1>
-						<p className="mb-8 text-sm " data-testid="ProductElement_Price">
+						<p className="mb-8 text-sm font-bold text-subTxt  " data-testid="ProductElement_Price">
 							{price}
 						</p>
 						{variants && (
@@ -131,7 +131,7 @@ const ProductDetails = ({ product, channel }: ProductDetailsProps): JSX.Element 
 							<AddButton disabled={!selectedVariantID || !selectedVariant?.quantityAvailable} />
 						</div>
 						{description && (
-							<div className="mt-8 space-y-6 text-sm text-gray-500 dark:text-gray-400">
+							<div className="mt-8 space-y-6 text-sm text-gray-500 dark:text-gray-400 ">
 								{description.map((content: string, index: number) => (
 									<div key={index} dangerouslySetInnerHTML={{ __html: xss(content) }} />
 								))}

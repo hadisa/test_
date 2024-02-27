@@ -25,7 +25,7 @@ export default async function Page({ params }: { params: { channel: string } }) 
 				</p>
 				<LinkWithChannel
 					href="/"
-					className="inline-block max-w-full rounded border border-transparent bg-neutral-900 px-6 py-3 text-center font-medium text-neutral-50 hover:bg-neutral-800 aria-disabled:cursor-not-allowed aria-disabled:bg-neutral-500 sm:px-16 dark:border-gray-600"
+					className="inline-block max-w-full rounded border border-transparent bg-bgComp px-6 py-3 text-center font-medium text-neutral-50 hover:bg-bgComp_hover aria-disabled:cursor-not-allowed aria-disabled:bg-neutral-500 sm:px-16 dark:border-gray-600"
 				>
 					Explore products
 				</LinkWithChannel>
@@ -44,7 +44,7 @@ export default async function Page({ params }: { params: { channel: string } }) 
 				>
 					{checkout.lines.map((item) => (
 						<li key={item.id} className="flex py-4">
-							<div className="aspect-square h-24 w-24 flex-shrink-0 overflow-hidden rounded-md bg-neutral-50 sm:h-32 sm:w-32">
+							<div className="aspect-square h-24 w-24 flex-shrink-0 overflow-hidden rounded-md bg-neutral-50 dark:bg-gray-800 sm:h-32 sm:w-32">
 								{item.variant?.product?.thumbnail?.url && (
 									<Image
 										src={item.variant.product.thumbnail.url}
@@ -72,7 +72,7 @@ export default async function Page({ params }: { params: { channel: string } }) 
 											{item.variant?.product?.category?.name}
 										</p>
 										{item.variant.name !== item.variant.id && Boolean(item.variant.name) && (
-											<p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
+											<p className="mt-1 text-sm text-subTxt">
 												Variant: {item.variant.name}
 											</p>
 										)}
@@ -97,7 +97,7 @@ export default async function Page({ params }: { params: { channel: string } }) 
 						<div className="flex items-center justify-between gap-2 py-2">
 							<div>
 								<p className="font-semibold text-neutral-900">Your Total</p>
-								<p className="mt-1 text-sm text-neutral-500">Shipping will be calculated in the next step</p>
+								<p className="mt-1 text-sm text-subTxt">Shipping will be calculated in the next step</p>
 							</div>
 							<div className="font-medium text-neutral-900">
 								{formatMoney(checkout.totalPrice.gross.amount, checkout.totalPrice.gross.currency)}

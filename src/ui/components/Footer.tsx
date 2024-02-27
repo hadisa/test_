@@ -22,13 +22,13 @@ export async function Footer({ channel }: { channel: string }) {
 	const currentYear = new Date().getFullYear();
 
 	return (
-		<footer className="border-neutral-300 dark:bg-gray-900 bg-neutral-50">
+		<footer className="border-neutral-300 dark:bg-bgDark bg-neutral-50">
 			<div className="mx-auto max-w-7xl px-4 lg:px-8">
 				<div className="grid grid-cols-3 gap-8 py-16">
 					{footerLinks.menu?.items?.map((item) => {
 						return (
 							<div key={item.id}>
-								<h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{item.name}</h3>
+								<h3 className="text-sm font-semibold text-bgDark dark:text-gray-100">{item.name}</h3>
 								<ul className="mt-4 space-y-4 [&>li]:text-neutral-500">
 									{item.children?.map((child) => {
 										if (child.category) {
@@ -81,7 +81,7 @@ export async function Footer({ channel }: { channel: string }) {
 					</div>
 				)}
 
-				<div className="flex flex-col justify-between border-t border-neutral-200 py-10 sm:flex-row">
+				<div className="flex flex-col justify-between border-t border-neutral-200 dark:border-neutral-500 py-10 sm:flex-row">
 					<p className="text-sm ext-neutral-500 dark:text-gray-300">Copyright &copy; {currentYear} Your Store, Inc.</p>
 					<p className="flex gap-1 text-sm text-neutral-500 dark:text-gray-300">
 						Powered by{" "}
