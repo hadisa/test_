@@ -1,15 +1,13 @@
 "use client"
-import { useEffect } from "react";
-import { useTheme } from "next-themes";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import edjsHTML from "editorjs-html";
-import xss from "xss";
-import { AddButton } from "../products/[slug]/AddButton";
 import { formatMoney, formatMoneyRange } from "@/lib/utils";
 import { ProductImageWrapper } from "@/ui/atoms/ProductImageWrapper";
 import { AvailabilityMessage } from "@/ui/components/AvailabilityMessage";
-import { VariantSelector } from "@/ui/components/VariantSelector"
-
+import { VariantSelector } from "@/ui/components/VariantSelector";
+import edjsHTML from "editorjs-html";
+import { useTheme } from "next-themes";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+import xss from "xss";
 
 const parser = edjsHTML();
 
@@ -30,12 +28,13 @@ const ProductDetails = ({ product, channel }: any) => {
     const productImage = product.thumbnail;
     const description = product?.description ? parser.parse(JSON.parse(product?.description)) : null;
     const variants = product.variants;
-    const selectedVariantID = null;
-    const selectedVariant = variants?.find(({ id }: any) => id === selectedVariantID);
+    const selectedVariantID = variants?.[0]?.id; // Assuming you want to select the first variant initially
 
-    const addItem = () => { };
+    const addItem = () => { /* Implement addItem logic */ };
 
     const isAvailable = variants?.some((variant: any) => variant.quantityAvailable) ?? false;
+
+    const selectedVariant = variants?.find(({ id }: any) => id === selectedVariantID);
 
     const price = selectedVariant?.pricing?.price?.gross
         ? formatMoney(selectedVariant.pricing.price.gross.amount, selectedVariant.pricing.price.gross.currency)
@@ -86,7 +85,7 @@ const ProductDetails = ({ product, channel }: any) => {
                     __html: JSON.stringify(productJsonLd),
                 }}
             />
-            <form className="grid gap-2 sm:grid-cols-2 lg:grid-cols-8" action={addItem}>
+            <form className="grid gap-2 sm:grid-cols-2 lg:grid-cols-8" onSubmit={addItem}>
                 <div className="md:col-span-1 lg:col-span-5">
                     {productImage && (
                         <ProductImageWrapper
@@ -116,7 +115,9 @@ const ProductDetails = ({ product, channel }: any) => {
                         )}
                         <AvailabilityMessage isAvailable={isAvailable} />
                         <div className="mt-8 ">
-                            <AddButton disabled={!selectedVariantID || !selectedVariant?.quantityAvailable} />
+                            <button type="submit" disabled={!selectedVariantID || !selectedVariant?.quantityAvailable}>
+                                Add to Cart
+                            </button>
                         </div>
                         {description && (
                             <div className="mt-8 space-y-6 text-sm text-gray-500 dark:text-gray-400">
@@ -133,4 +134,3 @@ const ProductDetails = ({ product, channel }: any) => {
 };
 
 export default ProductDetails;
-
